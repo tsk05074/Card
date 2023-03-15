@@ -10,8 +10,6 @@ public class CardDisplay : MonoBehaviour
     public Image image;
     void Start()
     {
-        currentCard = FindObjectOfType<Card>();
-
         text.text = scriptableCard.cardName;
         image.sprite = scriptableCard.cardSprite;
     }

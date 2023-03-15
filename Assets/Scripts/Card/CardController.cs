@@ -5,14 +5,11 @@ using UnityEngine;
 public class CardController : MonoBehaviour
 {
     public List<Card> deck = new List<Card>();  //카드 현재 덱
-    public List<Transform> cardSlots = new List<Transform>();   //넣어지는 카드
-    public List<Transform> currentSlots = new List<Transform>();    //다시 돌아가는 카드
+    public List<Transform> cardSlots = new List<Transform>();   //카드 슬롯 덱
+    public List<Transform> currentSlots = new List<Transform>();    //카드 돌아가는 덱
     [SerializeField]
-    private List<Card> savedeck = new List<Card>();
-
-    //public Transform[] cardSlots;
-    public bool[] availbleCardSlots;
-    private int Index = 0;
+    private List<Card> savedeck = new List<Card>(); //선택된 카드 저장 덱
+    public bool[] availbleCardSlots;    //슬록이 비었는지 체크
 
     public void CardSelect(int handIndex){
         Card card = deck[handIndex];

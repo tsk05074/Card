@@ -1294,6 +1294,7 @@ MonoBehaviour:
   - {fileID: 1219060734}
   - {fileID: 1631298191}
   - {fileID: 230351967}
+  savedeck: []
   availbleCardSlots: 000000
 --- !u!4 &640234616
 Transform:
