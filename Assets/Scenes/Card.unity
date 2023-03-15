@@ -217,6 +217,7 @@ GameObject:
   - component: {fileID: 88542188}
   - component: {fileID: 88542193}
   - component: {fileID: 88542192}
+  - component: {fileID: 88542194}
   m_Layer: 5
   m_Name: LeftButton
   m_TagString: Untagged
@@ -372,7 +373,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db38ba705325adc4495b79e99c400453, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currenPosition: {x: 0, y: 0}
+--- !u!114 &88542194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 88542186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ed02367c208abf44ae2fc46ce83a658, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scriptableCard: {fileID: 11400000, guid: 214020502bb802b4c9694e31559f97d1, type: 2}
+  text: {fileID: 2121406350}
+  image: {fileID: 88542189}
 --- !u!1 &163424626
 GameObject:
   m_ObjectHideFlags: 0
@@ -505,6 +520,7 @@ GameObject:
   - component: {fileID: 175727470}
   - component: {fileID: 175727475}
   - component: {fileID: 175727474}
+  - component: {fileID: 175727476}
   m_Layer: 5
   m_Name: DownButton
   m_TagString: Untagged
@@ -660,7 +676,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db38ba705325adc4495b79e99c400453, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currenPosition: {x: 0, y: 0}
+--- !u!114 &175727476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175727468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ed02367c208abf44ae2fc46ce83a658, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scriptableCard: {fileID: 11400000, guid: ef2006382617df64f981e7fef7e78ec0, type: 2}
+  text: {fileID: 1706726582}
+  image: {fileID: 175727471}
 --- !u!1 &230351966
 GameObject:
   m_ObjectHideFlags: 0
@@ -673,7 +703,6 @@ GameObject:
   - component: {fileID: 230351972}
   - component: {fileID: 230351971}
   - component: {fileID: 230351970}
-  - component: {fileID: 230351969}
   - component: {fileID: 230351968}
   m_Layer: 5
   m_Name: RightButton (3)
@@ -723,19 +752,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &230351969
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 230351966}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db38ba705325adc4495b79e99c400453, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currenPosition: {x: 0, y: 0}
 --- !u!114 &230351970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1269,11 +1285,6 @@ MonoBehaviour:
   - {fileID: 175727475}
   - {fileID: 88542193}
   - {fileID: 1125488447}
-  checkPoint:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   cardSlots:
   - {fileID: 1216515126}
   - {fileID: 572049025}
@@ -1283,8 +1294,7 @@ MonoBehaviour:
   - {fileID: 1219060734}
   - {fileID: 1631298191}
   - {fileID: 230351967}
-  availbleCardSlots: 010101
-  hasBeenPlayer: 0
+  availbleCardSlots: 000000
 --- !u!4 &640234616
 Transform:
   m_ObjectHideFlags: 0
@@ -1459,7 +1469,6 @@ GameObject:
   - component: {fileID: 740371822}
   - component: {fileID: 740371821}
   - component: {fileID: 740371820}
-  - component: {fileID: 740371819}
   - component: {fileID: 740371818}
   m_Layer: 5
   m_Name: UpButton
@@ -1509,19 +1518,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &740371819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 740371816}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db38ba705325adc4495b79e99c400453, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currenPosition: {x: 0, y: 0}
 --- !u!114 &740371820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1752,6 +1748,7 @@ GameObject:
   - component: {fileID: 1125488442}
   - component: {fileID: 1125488447}
   - component: {fileID: 1125488446}
+  - component: {fileID: 1125488448}
   m_Layer: 5
   m_Name: RightButton (3)
   m_TagString: Untagged
@@ -1907,7 +1904,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db38ba705325adc4495b79e99c400453, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currenPosition: {x: 0, y: 0}
+--- !u!114 &1125488448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125488440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ed02367c208abf44ae2fc46ce83a658, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scriptableCard: {fileID: 11400000, guid: d755e37782b2da347a789457b98c3540, type: 2}
+  text: {fileID: 361673318}
+  image: {fileID: 1125488443}
 --- !u!1 &1214480552
 GameObject:
   m_ObjectHideFlags: 0
@@ -2232,7 +2243,6 @@ GameObject:
   - component: {fileID: 1219060739}
   - component: {fileID: 1219060738}
   - component: {fileID: 1219060737}
-  - component: {fileID: 1219060736}
   - component: {fileID: 1219060735}
   m_Layer: 5
   m_Name: DownButton
@@ -2282,19 +2292,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1219060736
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1219060733}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db38ba705325adc4495b79e99c400453, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currenPosition: {x: 0, y: 0}
 --- !u!114 &1219060737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2483,6 +2480,7 @@ GameObject:
   - component: {fileID: 1501336820}
   - component: {fileID: 1501336825}
   - component: {fileID: 1501336824}
+  - component: {fileID: 1501336826}
   m_Layer: 5
   m_Name: UpButton
   m_TagString: Untagged
@@ -2587,7 +2585,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4dbda7034e9be914f8cac956e8e30289, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2638,7 +2636,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db38ba705325adc4495b79e99c400453, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currenPosition: {x: 0, y: 0}
+--- !u!114 &1501336826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1501336818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ed02367c208abf44ae2fc46ce83a658, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scriptableCard: {fileID: 11400000, guid: c760b58ef5ea5e9468c95c9b3cbf93d4, type: 2}
+  text: {fileID: 1691999194}
+  image: {fileID: 1501336821}
 --- !u!1 &1631298190
 GameObject:
   m_ObjectHideFlags: 0
@@ -2651,7 +2663,6 @@ GameObject:
   - component: {fileID: 1631298196}
   - component: {fileID: 1631298195}
   - component: {fileID: 1631298194}
-  - component: {fileID: 1631298193}
   - component: {fileID: 1631298192}
   m_Layer: 5
   m_Name: LeftButton
@@ -2701,19 +2712,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1631298193
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1631298190}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db38ba705325adc4495b79e99c400453, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currenPosition: {x: 0, y: 0}
 --- !u!114 &1631298194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2979,7 +2977,7 @@ GameObject:
   - component: {fileID: 1816030741}
   - component: {fileID: 1816030742}
   m_Layer: 5
-  m_Name: CardSprite
+  m_Name: CardButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3044,7 +3042,7 @@ GameObject:
   - component: {fileID: 1994630311}
   - component: {fileID: 1994630312}
   m_Layer: 5
-  m_Name: CardSprite (1)
+  m_Name: CardCurrentPositionButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

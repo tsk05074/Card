@@ -4,35 +4,34 @@ using UnityEngine;
 
 public class CardController : MonoBehaviour
 {
-    public List<Card> deck = new List<Card>();
-    public List<Transform> cardSlots = new List<Transform>();
-    public List<Transform> currentSlots = new List<Transform>();
+    public List<Card> deck = new List<Card>();  //카드 현재 덱
+    public List<Transform> cardSlots = new List<Transform>();   //넣어지는 카드
+    public List<Transform> currentSlots = new List<Transform>();    //다시 돌아가는 카드
+    [SerializeField]
+    private List<Card> savedeck = new List<Card>();
 
     //public Transform[] cardSlots;
     public bool[] availbleCardSlots;
-    public bool hasBeenPlayer;
     private int Index = 0;
 
-    public void Start(){
+    public void CardSelect(int handIndex){
+        Card card = deck[handIndex];
+
         for(int i=0; i<availbleCardSlots.Length; i++){
-            if(availbleCardSlots[i] == true){
-                //card.transform.position = cardSlots[i].position;
+            if(!availbleCardSlots[i] && card.transform.position == currentSlots[handIndex].position){
+                card.transform.position = cardSlots[i].position;
+                availbleCardSlots[i] = true;
+                savedeck.Add(card);
+                return;
+            }
+            else if(availbleCardSlots[i] && card.transform.position == cardSlots[i].position){
+                card.transform.position = currentSlots[handIndex].position;
                 availbleCardSlots[i] = false;
+                savedeck.Remove(card);
+                return;
             }
         }
-    }
-
-    public void CardSelect(int handIndex){
-
-        if(!availbleCardSlots[handIndex] ){
-            deck[handIndex].transform.position = cardSlots[handIndex].position;
-            availbleCardSlots[handIndex] = true;
-        }
-        else if(availbleCardSlots[handIndex]){
-            deck[handIndex].transform.position = currentSlots[handIndex].transform.position;
-            availbleCardSlots[handIndex] = false;
-
-        }
+      
     }
 }
 
