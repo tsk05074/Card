@@ -8,4 +8,5 @@ public class ScriptableCard : ScriptableObject
     public string cardName;
     public Sprite cardSprite;
     public int cardNum;
+
 }
