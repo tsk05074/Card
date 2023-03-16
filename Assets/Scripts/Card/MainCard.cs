@@ -10,10 +10,7 @@ public class MainCard : MonoBehaviour
     void Awake()
     {
         for(int i=0;i<CardController.savedeck.Count; i++){
-            card[i] = CardController.savedeck[i];
-            card[i].text = CardController.savedeck[i].text;
-            card[i].image.sprite = CardController.savedeck[i].image.sprite;
+            card[i].scriptableCard = CardController.savedeck[i];
         }
     }
-
 }
