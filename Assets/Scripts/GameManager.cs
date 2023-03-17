@@ -7,10 +7,13 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager instance = null;
 
-    public CardController cardController;
-    public CardDisplay cardDisplay;
-    public Card card;
+    public GameObject mainScene;
+    public GameObject mainTIle;
+    public GameObject cardScene;
 
+    public MainCardController mainCard;
+    public SceneChange sceneChange;
+    public CardDisplay cardDisplay;
     private void Awake() {
         if(null == instance){
             instance = this;
@@ -21,25 +24,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    void Start(){
+        mainCard = FindObjectOfType<MainCardController>();
+        sceneChange = FindObjectOfType<SceneChange>();
+        cardDisplay = FindObjectOfType<CardDisplay>();
+        mainTIle.SetActive(false);
+        mainTIle.SetActive(false);
+    }
+
     public static GameManager Instance{
         get{
             if(null == instance){
                 return null;
             }
             return instance;
-        }
-    }
-
-    private void Start(){
-        cardController = FindObjectOfType<CardController>();
-        card = FindObjectOfType<Card>();
-        cardDisplay = FindObjectOfType<CardDisplay>();
-    }
-
-    public void MainScene(){
-        if(cardController.availbleCardSlots[0] && cardController.availbleCardSlots[1] 
-        && cardController.availbleCardSlots[2]){
-            SceneManager.LoadScene("Main");
         }
     }
 }

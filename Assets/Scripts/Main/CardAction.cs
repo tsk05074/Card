@@ -8,12 +8,12 @@ public class CardAction : MonoBehaviour
     public Movement moveMent;
 
     void Start(){
-        moveMent = GameObject.Find("Player").GetComponent<Movement>();
     }   
     public void PerformAction(ScriptableCard _cardname){
 
-        cardname = _cardname;
+        moveMent = GameObject.Find("Player").GetComponent<Movement>();
 
+        cardname = _cardname;
         switch(cardname.cardName){
             case "UpButton" : moveMent.Vertical(2); break;
             case "DownButton" : moveMent.Vertical(-2); break;

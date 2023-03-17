@@ -12,5 +12,4 @@ public class CardDisplay : MonoBehaviour
         text.text = scriptableCard.cardName;
         image.sprite = scriptableCard.cardSprite;
     }
-
 }

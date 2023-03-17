@@ -1,34 +1,45 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainCardController : MonoBehaviour
 {
     CardAction cardActions;
     [SerializeField]
     private List<CardDisplay> card = new List<CardDisplay>();
+    Image image;
+       public CardDisplay cardDiplay;
+
     void Awake()
     {
+        image = GetComponent<Image>();
         cardActions = GetComponent<CardAction>();
-
-        for(int i=0;i<CardController.savedeck.Count; i++){
-            card[i].scriptableCard = CardController.savedeck[i];
-            Debug.Log(card[i].scriptableCard.cardName);
-        }
+        cardDiplay = FindObjectOfType<CardDisplay>();
     }
 
-    void Start(){
+    public void CardSort(){
+         for(int i=0;i<CardController.savedeck.Count; i++){
+            card[i].scriptableCard = CardController.savedeck[i];
+            card[i].image.sprite = CardController.savedeck[i].cardSprite;
+        }
+
         StartCoroutine(CardPlay());
     }
 
-    IEnumerator CardPlay(){
-        for(int i=0; i< card.Count;i++){
-            cardActions.PerformAction(card[i].scriptableCard);
-                    Debug.Log(i);
+    public IEnumerator CardPlay(){
 
-
+        for(int i=0; i< CardController.savedeck.Count;i++){
+            cardActions.PerformAction(CardController.savedeck[i]);
             yield return new WaitForSeconds(2.0f);
+
         }
+        CardController.savedeck.Clear();
+
+        GameManager.Instance.cardScene.SetActive(false);
+        GameManager.Instance.mainTIle.SetActive(true);
+        GameManager.Instance.mainTIle.SetActive(true);
     }
 
 

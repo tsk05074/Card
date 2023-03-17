@@ -13,6 +13,10 @@ public class CardController : MonoBehaviour
     public static List<ScriptableCard> savedeck = new List<ScriptableCard>(); //선택된 카드 저장 덱
     public bool[] availbleCardSlots;    //슬록이 비었는지 체크
 
+    [SerializeField]
+    private List<CardDisplay> mainCard = new List<CardDisplay>();
+
+
     public void CardSelect(int handIndex){
         Card card = deck[handIndex];
         ScriptableCard scriptableCard = new ScriptableCard();
@@ -23,7 +27,6 @@ public class CardController : MonoBehaviour
                 card.transform.position = cardSlots[i].position;
                 availbleCardSlots[i] = true;
                 savedeck.Add(scriptableCard);
-
                 return;
             }
             else if(availbleCardSlots[i] && card.transform.position == cardSlots[i].position){
@@ -33,7 +36,6 @@ public class CardController : MonoBehaviour
                 return;
             }
         }
-      
     }
 }
 
