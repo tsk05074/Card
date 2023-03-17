@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class CardDisplay : MonoBehaviour
 {
     public ScriptableCard scriptableCard;
-    private Card currentCard;
     public Text text;
     public Image image;
     void Start()

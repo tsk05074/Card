@@ -636,6 +636,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scriptableCard: {fileID: 0}
+  cardTitle: 
   text: {fileID: 1511398944}
   image: {fileID: 488947932}
 --- !u!1 &519420028
@@ -1213,6 +1214,7 @@ GameObject:
   m_Component:
   - component: {fileID: 915135077}
   - component: {fileID: 915135076}
+  - component: {fileID: 915135078}
   m_Layer: 0
   m_Name: MainCardController
   m_TagString: Untagged
@@ -1251,6 +1253,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &915135078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915135075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d82c21f7538ee24cadcf98085b7a3af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveMent: {fileID: 805017528}
 --- !u!1001 &929061530
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1857,6 +1872,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scriptableCard: {fileID: 0}
+  cardTitle: 
   text: {fileID: 725892544}
   image: {fileID: 1202718888}
 --- !u!1001 &1215345715
@@ -2179,6 +2195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scriptableCard: {fileID: 0}
+  cardTitle: 
   text: {fileID: 1773229764}
   image: {fileID: 1354068094}
 --- !u!1 &1511398942
