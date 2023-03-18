@@ -28,8 +28,6 @@ public class GameManager : MonoBehaviour
         mainCard = FindObjectOfType<MainCardController>();
         sceneChange = FindObjectOfType<SceneChange>();
         cardDisplay = FindObjectOfType<CardDisplay>();
-        mainTIle.SetActive(false);
-        mainTIle.SetActive(false);
     }
 
     public static GameManager Instance{

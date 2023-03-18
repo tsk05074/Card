@@ -11,6 +11,9 @@ public class SceneChange : MonoBehaviour
    public MainCardController maincard;
    public CardController scenecard;
 
+   public Camera myCamera;
+   public Camera minimapCamera;
+
     private void Start(){
         cardController = FindObjectOfType<CardController>();
         scenecard = FindObjectOfType<CardController>();
@@ -21,23 +24,35 @@ public class SceneChange : MonoBehaviour
         if(sceneName == "Main"){
             if(cardController.availbleCardSlots[0] && cardController.availbleCardSlots[1] 
                 && cardController.availbleCardSlots[2]){
-                player.SetActive(true);
                 GameManager.Instance.cardScene.SetActive(false);
-                GameManager.Instance.mainTIle.SetActive(true);
+                //GameManager.Instance.mainTIle.SetActive(true);
                 maincard.CardSort();
                 for(int i=0;i <scenecard.availbleCardSlots.Length; i++){
                 scenecard.availbleCardSlots[i] = false;
-
+                minimapCamera.gameObject.SetActive(false);
+                MainCameraLayer();
                 }
             }
 
         }
         else{
-            player.SetActive(false);
-
             GameManager.Instance.cardScene.SetActive(true);
-                GameManager.Instance.mainTIle.SetActive(false);
+               //GameManager.Instance.mainTIle.SetActive(false);
+            minimapCamera.gameObject.SetActive(true);
+            CardCamera();
         }
-     
+   }
+
+   public void MainCameraLayer(){
+        myCamera.cullingMask = ~(1 << 8);
+   }
+
+   public void CardCamera(){
+        Debug.Log("CardScene");
+
+        myCamera.cullingMask = 1 << 5;
+        // myCamera.cullingMask = myCamera.cullingMask & ~(1 << 9);
+        // myCamera.cullingMask = myCamera.cullingMask & ~(1 << 11);
+
    }
 }

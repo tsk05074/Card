@@ -14,9 +14,9 @@ TagManager:
   - 
   - 
   - Minimap
-  - 
-  - 
-  - 
+  - Player
+  - MainScene
+  - Tilemap
   - 
   - 
   - 
