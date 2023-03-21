@@ -30,6 +30,7 @@ public class MainCardController : MonoBehaviour
 
     public IEnumerator CardPlay(){
 
+        yield return new WaitForSeconds(1.0f);
         for(int i=0; i< CardController.savedeck.Count;i++){
             cardActions.PerformAction(CardController.savedeck[i]);
             yield return new WaitForSeconds(2.0f);
@@ -37,9 +38,7 @@ public class MainCardController : MonoBehaviour
         }
         CardController.savedeck.Clear();
 
-        GameManager.Instance.cardScene.SetActive(false);
-        GameManager.Instance.mainTIle.SetActive(true);
-        GameManager.Instance.mainTIle.SetActive(true);
+        GameManager.Instance.cardScene.SetActive(true);
     }
 
 

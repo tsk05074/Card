@@ -6,14 +6,12 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance = null;
-
-    public GameObject mainScene;
-    public GameObject mainTIle;
     public GameObject cardScene;
-
     public MainCardController mainCard;
     public SceneChange sceneChange;
     public CardDisplay cardDisplay;
+
+   
     private void Awake() {
         if(null == instance){
             instance = this;
@@ -22,6 +20,7 @@ public class GameManager : MonoBehaviour
         else{
             Destroy(this.gameObject);
         }
+
     }
 
     void Start(){

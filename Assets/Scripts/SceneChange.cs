@@ -7,7 +7,6 @@ public class SceneChange : MonoBehaviour
 {
    public CardController cardController;
    public GameObject maincardController;
-   public GameObject player;
    public MainCardController maincard;
    public CardController scenecard;
 
@@ -25,7 +24,6 @@ public class SceneChange : MonoBehaviour
             if(cardController.availbleCardSlots[0] && cardController.availbleCardSlots[1] 
                 && cardController.availbleCardSlots[2]){
                 GameManager.Instance.cardScene.SetActive(false);
-                //GameManager.Instance.mainTIle.SetActive(true);
                 maincard.CardSort();
                 for(int i=0;i <scenecard.availbleCardSlots.Length; i++){
                 scenecard.availbleCardSlots[i] = false;
@@ -37,7 +35,6 @@ public class SceneChange : MonoBehaviour
         }
         else{
             GameManager.Instance.cardScene.SetActive(true);
-               //GameManager.Instance.mainTIle.SetActive(false);
             minimapCamera.gameObject.SetActive(true);
             CardCamera();
         }
@@ -48,11 +45,6 @@ public class SceneChange : MonoBehaviour
    }
 
    public void CardCamera(){
-        Debug.Log("CardScene");
-
         myCamera.cullingMask = 1 << 5;
-        // myCamera.cullingMask = myCamera.cullingMask & ~(1 << 9);
-        // myCamera.cullingMask = myCamera.cullingMask & ~(1 << 11);
-
    }
 }
