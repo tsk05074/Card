@@ -11,12 +11,16 @@ public class MainCardController : MonoBehaviour
     private List<CardDisplay> card = new List<CardDisplay>();
     Image image;
        public CardDisplay cardDiplay;
+       public bool moveSelect = false;
+       public bool mainCardScene = false;
 
     void Awake()
     {
         image = GetComponent<Image>();
         cardActions = GetComponent<CardAction>();
         cardDiplay = FindObjectOfType<CardDisplay>();
+
+
     }
 
     public void CardSort(){
@@ -32,13 +36,18 @@ public class MainCardController : MonoBehaviour
 
         yield return new WaitForSeconds(1.0f);
         for(int i=0; i< CardController.savedeck.Count;i++){
-            cardActions.PerformAction(CardController.savedeck[i]);
-            yield return new WaitForSeconds(2.0f);
+            if(!moveSelect){
+                mainCardScene = true;
+
+                cardActions.PerformAction(CardController.savedeck[i]);
+                Debug.Log(i);
+            }
+                yield return new WaitForSeconds(2.0f);
 
         }
         CardController.savedeck.Clear();
 
-        GameManager.Instance.cardScene.SetActive(true);
+        //GameManager.Instance.cardScene.SetActive(true);
     }
 
 

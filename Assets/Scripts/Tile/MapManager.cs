@@ -31,18 +31,20 @@ public class MapManager : MonoBehaviour
         }
     }
        
-
     private void Start() {
         mouseController = FindObjectOfType<MouseController>();
-
-         var tileMap = gameObject.GetComponentInChildren<Tilemap>();
+        PlayerMap();
+    }
+    
+    public void PlayerMap(){
+        var tileMap = gameObject.GetComponentInChildren<Tilemap>();
         var tileMaps = gameObject.transform.GetComponentsInChildren<Tilemap>().OrderByDescending(x => x.GetComponent<TilemapRenderer>().sortingOrder);
 
         map = new Dictionary<Vector2Int, OverlayTile>();
 
         BoundsInt bounds = tileMap.cellBounds;
 
-        for(int z = bounds.max.z; z >= bounds.min.z; z--){
+         for(int z = bounds.max.z; z >= bounds.min.z; z--){
 
             for(int y = bounds.min.y; y < bounds.max.y; y++){
 
@@ -72,13 +74,15 @@ public class MapManager : MonoBehaviour
                     
                 }
             }
-        }
-    }
-        mouseController.PositionCharacterOnLine(characterPosition);
-        character.standingOnTile = characterPosition;
-        mouseController.GetInRangeTiles();
-    }
 
+        }
+     }
+
+       mouseController.PositionCharacterOnLine(characterPosition);
+        character.standingOnTile = characterPosition;
+        //mouseController.GetInRangeTiles();
+    }
+   
     public List<OverlayTile> GetSurroundingTiles(Vector2Int originTile)
         {
             var surroundingTiles = new List<OverlayTile>();

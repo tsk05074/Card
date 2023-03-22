@@ -12,6 +12,7 @@ public class MouseController : MonoBehaviour
     public float speed;
     private bool isMoving = false;
 
+    public MainCardController mainCard;
     public PathFInder pathFinder;
     public RangeFinder rangeFinder;
     public List<OverlayTile> path;
@@ -20,6 +21,8 @@ public class MouseController : MonoBehaviour
     void start(){
         pathFinder = FindObjectOfType<PathFInder>();
         rangeFinder = FindObjectOfType<RangeFinder>();
+        mainCard = FindObjectOfType<MainCardController>();
+
         path = new List<OverlayTile>();
 
         rangeFInderTiles = new List<OverlayTile>();
@@ -45,12 +48,13 @@ public class MouseController : MonoBehaviour
                     }
 
             }
-            if(Input.GetMouseButtonDown(0)){
+            if(Input.GetMouseButtonDown(0) && mainCard.mainCardScene){
                 tile.SHowTile();
                 if(MapManager.Instance.character == null){
                     //
                 }
                 else{
+                    Debug.Log("버튼누름");
                     isMoving = true;
                     //path = pathFinder.FindPath(MapManager.Instance.character.standingOnTile, tile);
                     tile.gameObject.GetComponent<OverlayTile>().HIdeTile();
@@ -78,6 +82,8 @@ public class MouseController : MonoBehaviour
         if(path.Count == 0){
             GetInRangeTiles();
             isMoving = false;
+            mainCard.moveSelect = false;
+            mainCard.mainCardScene = false;
         }
     }
 
@@ -101,7 +107,10 @@ public class MouseController : MonoBehaviour
         MapManager.Instance.character.standingOnTile = tile;
     }
 
+//현재 이동 위치 표시
     public void GetInRangeTiles(){
+        mainCard.moveSelect = true;
+
         rangeFInderTiles = rangeFinder.GetTilesInRange(new Vector2Int(MapManager.Instance.character.standingOnTile.gridLocation.x,
         MapManager.Instance.character.standingOnTile.gridLocation.y),1);
 
