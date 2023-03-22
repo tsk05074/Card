@@ -2193,6 +2193,7 @@ GameObject:
   m_Component:
   - component: {fileID: 847762289}
   - component: {fileID: 847762290}
+  - component: {fileID: 847762291}
   m_Layer: 0
   m_Name: FindPath
   m_TagString: Untagged
@@ -2225,6 +2226,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 87ddd4f1d9ec7b34f9de434e7b8f0ddf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &847762291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847762288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0be467e2d4be93a4698a3d24054cdea1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &888084083
@@ -3975,7 +3988,9 @@ MonoBehaviour:
   chracterPrefab: {fileID: 7584235531880537902, guid: 4827262035fabc84997cd01c0642b06b, type: 3}
   speed: 3
   pathFinder: {fileID: 847762290}
+  rangeFinder: {fileID: 847762291}
   path: []
+  rangeFInderTiles: []
 --- !u!1 &1354068091
 GameObject:
   m_ObjectHideFlags: 0

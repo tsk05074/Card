@@ -5,10 +5,22 @@ using System.Linq;
 
 public class PathFInder : MonoBehaviour
 {
-     public List<OverlayTile> FindPath(OverlayTile start, OverlayTile end)
+    private Dictionary<Vector2Int, OverlayTile> searchableTiles;
+     public List<OverlayTile> FindPath(OverlayTile start, OverlayTile end, List<OverlayTile> inRangeTiles)
         {
+            searchableTiles = new Dictionary<Vector2Int, OverlayTile>();
+
             List<OverlayTile> openList = new List<OverlayTile>();
             List<OverlayTile> closedList = new List<OverlayTile>();
+
+            if(inRangeTiles.Count > 0){
+                foreach(var item in inRangeTiles){
+                    searchableTiles.Add(item.grid2DLocation, MapManager.Instance.map[item.grid2DLocation]);
+                }
+            }
+            else{
+                searchableTiles = MapManager.Instance.map;
+            }
 
             openList.Add(start);
 

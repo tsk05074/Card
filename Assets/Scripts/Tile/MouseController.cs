@@ -10,15 +10,19 @@ public class MouseController : MonoBehaviour
     public GameObject chracterPrefab;
 
     public float speed;
-
-    private CharacterInfo character;
+    private bool isMoving = false;
 
     public PathFInder pathFinder;
+    public RangeFinder rangeFinder;
     public List<OverlayTile> path;
+    public List<OverlayTile> rangeFInderTiles;
 
     void start(){
         pathFinder = FindObjectOfType<PathFInder>();
+        rangeFinder = FindObjectOfType<RangeFinder>();
         path = new List<OverlayTile>();
+
+        rangeFInderTiles = new List<OverlayTile>();
     }
 
     void LateUpdate()
@@ -29,20 +33,32 @@ public class MouseController : MonoBehaviour
             OverlayTile tile = hit.Value.collider.gameObject.GetComponent<OverlayTile>();
             cursor.transform.position = tile.transform.position;
 
+            if(rangeFInderTiles.Contains(tile) && !isMoving){
+
+                path = pathFinder.FindPath(MapManager.Instance.character.standingOnTile, tile, rangeFInderTiles);
+
+                for (int i = 0; i < path.Count; i++)
+                    {
+                        var previousTile = i > 0 ? path[i - 1] : MapManager.Instance.character.standingOnTile;
+                        var futureTile = i < path.Count - 1 ? path[i + 1] : null;
+
+                    }
+
+            }
             if(Input.GetMouseButtonDown(0)){
                 tile.SHowTile();
                 if(MapManager.Instance.character == null){
                     //
                 }
                 else{
-                    path = pathFinder.FindPath(MapManager.Instance.character.standingOnTile, tile);
-
+                    isMoving = true;
+                    //path = pathFinder.FindPath(MapManager.Instance.character.standingOnTile, tile);
                     tile.gameObject.GetComponent<OverlayTile>().HIdeTile();
                 }
             }
         }
 
-        if(path.Count > 0){
+        if(path.Count > 0 && isMoving){
             MoveAlongPath();
         }
     }
@@ -57,6 +73,11 @@ public class MouseController : MonoBehaviour
         if(Vector2.Distance(MapManager.Instance.character.transform.position, path[0].transform.position) < 0.00001f){
             PositionCharacterOnLine(path[0]);
             path.RemoveAt(0);
+        }
+
+        if(path.Count == 0){
+            GetInRangeTiles();
+            isMoving = false;
         }
     }
 
@@ -76,8 +97,16 @@ public class MouseController : MonoBehaviour
 
 // 캐릭터 포지션 저장
     public void PositionCharacterOnLine(OverlayTile tile){
-        Debug.Log(tile.transform.position);
         MapManager.Instance.character.transform.position = new Vector3(tile.transform.position.x, tile.transform.position.y + 0.0001f, tile.transform.position.z);
         MapManager.Instance.character.standingOnTile = tile;
+    }
+
+    public void GetInRangeTiles(){
+        rangeFInderTiles = rangeFinder.GetTilesInRange(new Vector2Int(MapManager.Instance.character.standingOnTile.gridLocation.x,
+        MapManager.Instance.character.standingOnTile.gridLocation.y),1);
+
+        foreach(var item in rangeFInderTiles){
+            item.SHowTile();
+        }
     }
 }
