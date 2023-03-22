@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7584235531880537900}
   - component: {fileID: 7584235531880537901}
-  - component: {fileID: 7584235531880537891}
-  m_Layer: 0
+  - component: {fileID: 7593754108746246190}
+  m_Layer: 5
   m_Name: TestPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7584235531880537901
 SpriteRenderer:
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7584235531880537891
+--- !u!114 &7593754108746246190
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,7 +94,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7584235531880537902}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bba862d24ee0fd74ca51115e23536db2, type: 3}
+  m_Script: {fileID: 11500000, guid: 9554cadf292a30547924ffee2b02186b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   standingOnTile: {fileID: 0}

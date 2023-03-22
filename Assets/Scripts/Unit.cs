@@ -12,8 +12,7 @@ public class Unit : MonoBehaviour
 
     void Awake()
     {
-        //GameObject player = Instantiate(Player, tileTrans[4].transform.position, tileTrans[4].transform.rotation); 
-        Player.transform.parent = tileTrans[4].transform;
+    
     }
 
     // Update is called once per frame

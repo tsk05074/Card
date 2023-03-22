@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-public class Movement : MonoBehaviour, IUnitAction
+public class Movement : MonoBehaviour
 {
     public Ease moveEase;
 
