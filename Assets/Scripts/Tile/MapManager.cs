@@ -62,7 +62,7 @@ public class MapManager : MonoBehaviour
                         overlayTile.gameObject.GetComponent<OverlayTile>().gridLocation = new Vector3Int(x, y, z);
                         map.Add(new Vector2Int(x, y), overlayTile.gameObject.GetComponent<OverlayTile>());
 
-                    if(overlayTile.gameObject.GetComponent<OverlayTile>().gridLocation.x == -4 && 
+                    if(overlayTile.gameObject.GetComponent<OverlayTile>().gridLocation.x == -3 && 
                         overlayTile.gameObject.GetComponent<OverlayTile>().gridLocation.y == 0 && 
                         overlayTile.gameObject.GetComponent<OverlayTile>().gridLocation.z == 0
                     ){
