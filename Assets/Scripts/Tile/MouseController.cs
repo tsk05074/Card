@@ -39,7 +39,6 @@ public class MouseController : MonoBehaviour
             if(rangeFInderTiles.Contains(tile) && !isMoving){
 
                 path = pathFinder.FindPath(MapManager.Instance.character.standingOnTile, tile, rangeFInderTiles);
-
                 for (int i = 0; i < path.Count; i++)
                     {
                         var previousTile = i > 0 ? path[i - 1] : MapManager.Instance.character.standingOnTile;
