@@ -21,6 +21,30 @@ public class Grid : MonoBehaviour
         GeneraterGrid();
     }
 
+     public List<Vector3> ConvertPathNodesToWorldPositions(List<PathNode> path)
+    {
+        List<Vector3> worldPositions = new List<Vector3>();
+        for (int i = 0; i < path.Count; i++)
+        {
+            worldPositions.Add(GetWorldPosition(path[i].pos_x, path[i].pos_y, true));
+        }
+
+        return worldPositions;
+    }
+
+      internal void RemoveObject(Vector2Int positionOnGrid, GridObject gridObject)
+    {
+        if (CheckBoundry(positionOnGrid) == true)
+        {
+            if(grid[positionOnGrid.x, positionOnGrid.y].gridObject == gridObject) { return; }
+            grid[positionOnGrid.x, positionOnGrid.y].gridObject = null;
+        }
+        else
+        {
+            Debug.Log("You trying to place the object outside the boundries!");
+        }
+    }
+
     private void GeneraterGrid(){
         grid = new Node[length, width];
 
@@ -43,40 +67,55 @@ public class Grid : MonoBehaviour
         CalculateElevation();
     }
 
-    public void PlaceObject(Vector2Int positionOnGrid, GridObject gridObject)
+      public void PlaceObject(Vector2Int positionOnGrid, GridObject gridObject)
     {
-        if(CheckBoundry(positionOnGrid) == true){
+        if (CheckBoundry(positionOnGrid) == true)
+        {
             grid[positionOnGrid.x, positionOnGrid.y].gridObject = gridObject;
         }
-
-    }
-
-    public GridObject GetPlacedObject(Vector2Int gridPosition){
-        GridObject gridObject = grid[gridPosition.x, gridPosition.y].gridObject;
-        return gridObject;
-    }
-
-    public bool CheckBoundry(Vector2Int positionOnGrid){
-        if(positionOnGrid.x < 0 || positionOnGrid.x >= width){
-            return false;
+        else {
+            Debug.Log("You trying to place the object outside the boundries!");
         }
-        if(positionOnGrid.y < 0 || positionOnGrid.y >= length){
-            return false;
-        }
-
-        return true;
     }
 
-        internal bool CheckBoundry(int posX, int poxY)
+        public bool CheckBoundry(Vector2Int positionOnGrid)
     {
-        if(posX < 0 || posX >= width){
+        if (positionOnGrid.x < 0 || positionOnGrid.x >= length)
+        {
+
             return false;
         }
-        if(poxY < 0 || poxY >= length){
+        if (positionOnGrid.y < 0 || positionOnGrid.y >= width) 
+        {
+
             return false;
         }
 
         return true;
+    }
+
+    internal bool CheckBoundry(int posX, int posY)
+    {
+        if (posX < 0 || posX >= length)
+        {
+            return false;
+        }
+        if (posY < 0 || posY >= width)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+  internal GridObject GetPlacedObject(Vector2Int gridPosition)
+    {
+        if (CheckBoundry(gridPosition) == true) 
+        {
+            GridObject gridObject = grid[gridPosition.x, gridPosition.y].gridObject;
+            return gridObject;
+        }
+        return null;
     }
 
     private void CheckPassableTerrain(){
@@ -84,26 +123,29 @@ public class Grid : MonoBehaviour
             for(int x = 0; x < length; x++){
                 Vector3 worldPosition = GetWorldPosition(x,y);
                 bool passable = !Physics.CheckBox(worldPosition, Vector3.one/2 * cellSize, Quaternion.identity, obstacleLayer);
-                grid[x,y] = new Node();
+                //grid[x,y] = new Node();
                 grid[x,y].passable = passable;
             }
         }
     }
 
-    private void CalculateElevation(){
-        for(int y = 0; y < width; y++){
-            for(int x = 0; x < length; x++){
-                Ray ray = new Ray(GetWorldPosition(x,y), Vector3.down);
+  private void CalculateElevation()
+    {
+        for (int y = 0; y < width; y++) 
+        {
+            for (int x = 0; x < length; x++) 
+            {
+                Ray ray = new Ray(GetWorldPosition(x, y) + Vector3.up * 100f, Vector3.down);
                 RaycastHit hit;
-                if(Physics.Raycast(ray, out hit, float.MaxValue, terrinLayer)){
-                    grid[x,y].elevation = hit.point.z;
+                if (Physics.Raycast(ray, out hit,float.MaxValue, terrinLayer)) 
+                {
+                    grid[x, y].elevation = hit.point.z;
                 }
-               
             }
         }
     }
 
-    public bool CheckWalkable(int pos_x, int pos_y)
+      public bool CheckWalkable(int pos_x, int pos_y)
     {
         return grid[pos_x, pos_y].passable;
     }
@@ -115,27 +157,35 @@ public class Grid : MonoBehaviour
         return positionOnGrid;
     }
 
-    private void OnDrawGizmos() {
-        for(int y = 0; y < width; y++){
-            for(int x = 0; x < length; x++){
-                Vector3 pos = GetWorldPosition(x,y);
-                Gizmos.DrawCube(pos, Vector3.one/4);
+    private void OnDrawGizmos()
+    {
+        if (grid == null)
+        {
+            for (int y = 0; y < width; y++)
+            {
+                for (int x = 0; x < length; x++)
+                {
+                    Vector3 pos = GetWorldPosition(x, y);
+                    Gizmos.DrawCube(pos, Vector3.one / 4);
+                }
             }
         }
+        else {
+
+            for (int y = 0; y < width; y++)
+            {
+                for (int x = 0; x < length; x++)
+                {
+                    Vector3 pos = GetWorldPosition(x, y, true);
+                    Gizmos.color = grid[x, y].passable ? Color.white : Color.red;
+                    Gizmos.DrawCube(pos, Vector3.one / 4);
+                }
+            }
+        }
+        
     }
 
     public Vector3 GetWorldPosition(int x, int y, bool elevation = false){
-        return new Vector3(transform.position.x + (x * cellSize), transform.position.y + (y * cellSize), elevation == true? grid[x,y].elevation : 0f);
-        //return new Vector3(x * cellSize - 2.5f, y*cellSize -1.5f, elevation == true? grid[x,y].elevation : 0f);
-    }
-
-    public List<Vector3> ConvertPathNodesToWorldPositions(List<PathNode> path)
-    {
-        List<Vector3> worldPositions = new List<Vector3>();
-
-        for(int i=0; i<path.Count; i++){
-            worldPositions.Add(GetWorldPosition(path[i].pos_x, path[i].pos_y, true));
-        }
-        return worldPositions;
+        return new Vector3(x * cellSize, y*cellSize, elevation == true? grid[x,y].elevation : 0f);
     }
 }

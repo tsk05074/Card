@@ -67,7 +67,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetGrid: {fileID: 0}
-  positionOnGrid: {x: 0, y: 0}
+  positionOnGrid: {x: 2, y: 2}
 --- !u!114 &1943018252443811982
 MonoBehaviour:
   m_ObjectHideFlags: 0

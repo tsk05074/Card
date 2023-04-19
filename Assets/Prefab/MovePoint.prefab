@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 775529240214714790}
   - component: {fileID: 775529240214714791}
-  m_Layer: 14
+  m_Layer: 13
   m_Name: MovePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -6,55 +6,44 @@ using UnityEngine;
 public class MoveCharacter : MonoBehaviour
 {
     [SerializeField] Grid targetGird;
-    [SerializeField] LayerMask terrainLayerMask;
-
-    [SerializeField] GridObject targetCharacter;
-
     Pathfinding pathfinding;
 
-    List<PathNode> path;
-
-    [SerializeField] GridHighlight gridHighlight;
+    [SerializeField] GridHighlight gridHiglight;
 
     private void Start() {
         pathfinding = targetGird.GetComponent<Pathfinding>();
-        CheckWalkableTerrain();
     }
 
-    private void CheckWalkableTerrain()
+    public void CheckWalkableTerrain(Character targetCharacter)
     {
+        GridObject gridObject = targetCharacter.GetComponent<GridObject>();
         List<PathNode> walkableNodes = new List<PathNode>();
-        pathfinding.CalculatedWalkableNodes(
-            targetCharacter.positionOnGrid.x,
-            targetCharacter.positionOnGrid.y,
-            targetCharacter.GetComponent<Character>().movementPoints,
-            ref walkableNodes
-        );
+        pathfinding.Clear();
 
-        gridHighlight.Highlight(walkableNodes);
+        Debug.Log("checkwalkav" + gridObject.positionOnGrid.x + " : " + gridObject.positionOnGrid.y);
+
+        pathfinding.CalculateWalkableNodes(
+            gridObject.positionOnGrid.x,
+            gridObject.positionOnGrid.y,
+            targetCharacter.movementPoints,
+            ref walkableNodes
+            );
+
+        Debug.Log(walkableNodes);
+
+        gridHiglight.Hide();
+        gridHiglight.Highlight(walkableNodes);
     }
 
-    private void Update() {
-        if(Input.GetMouseButtonDown(0)){
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
+    public List<PathNode> GetPath(Vector2Int from){
+        List<PathNode> path = pathfinding.TraceBackPath(from.x, from.y);
+        path.Reverse();
+        //Debug.Log(path.Count);
 
-            if(Physics.Raycast(ray, out hit, float.MaxValue, terrainLayerMask)){
-                
-                
-                Vector2Int gridPosition = targetGird.GetGridPosition(hit.point);
-                //path = pathfinding.FindPath(targetCharacter.positionOnGrid.x, targetCharacter.positionOnGrid.y, gridPosition.x, gridPosition.y);
-                path = pathfinding.TraceBackPath(gridPosition.x, gridPosition.y);
-                path.Reverse();
+        if(path == null) {return null;}
+        if(path.Count == 0) {return null;}
 
-                Debug.Log(path);
-                
-                if(path == null){return;}
-                if(path.Count == 0){return;}
-                targetCharacter.GetComponent<Movement>().Move(path);
-                
-              
-            }
-        }
+
+        return path;
     }
 }
