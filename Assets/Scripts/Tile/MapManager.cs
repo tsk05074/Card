@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using System.Linq;
+using System;
 
 public class MapManager : MonoBehaviour
 {
@@ -19,8 +20,10 @@ public class MapManager : MonoBehaviour
     public Dictionary<Vector2Int, OverlayTile> map;
 
     public CharacterInfo character;
-    public MouseController mouseController;
+    private MouseController mouseController;
+    private BattleController battleController;
 
+    ScriptableCard scriptableCard;
 
     private void Awake() {
         if(_instance != null && _instance != this){
@@ -33,6 +36,8 @@ public class MapManager : MonoBehaviour
        
     private void Start() {
         mouseController = FindObjectOfType<MouseController>();
+        battleController = FindObjectOfType<BattleController>();
+        scriptableCard = FindObjectOfType<ScriptableCard>();
         PlayerMap();
     }
     
@@ -82,42 +87,82 @@ public class MapManager : MonoBehaviour
         character.standingOnTile = characterPosition;
         //mouseController.GetInRangeTiles();
     }
-   
-    public List<OverlayTile> GetSurroundingTiles(Vector2Int originTile)
+
+    public List<OverlayTile> GetSurroundingTiles(Vector2Int originTile, ScriptableCard cardtype)
+    {
+        var surroundingTiles = new List<OverlayTile>();
+        scriptableCard = cardtype;
+
+        switch (scriptableCard.CardType)
         {
-            var surroundingTiles = new List<OverlayTile>();
+            case cardType.Move :
+                Vector2Int TileToCheck = new Vector2Int(originTile.x + 1, originTile.y);
+                if (map.ContainsKey(TileToCheck))
+                {
+                    if (Mathf.Abs(map[TileToCheck].transform.position.z - map[originTile].transform.position.z) <= 1)
+                        surroundingTiles.Add(map[TileToCheck]);
+                }
 
+                TileToCheck = new Vector2Int(originTile.x - 1, originTile.y);
+                if (map.ContainsKey(TileToCheck))
+                {
+                    if (Mathf.Abs(map[TileToCheck].transform.position.z - map[originTile].transform.position.z) <= 1)
+                        surroundingTiles.Add(map[TileToCheck]);
+                }
 
-            Vector2Int TileToCheck = new Vector2Int(originTile.x + 1, originTile.y);
-            if (map.ContainsKey(TileToCheck))
-            {
-                if (Mathf.Abs(map[TileToCheck].transform.position.z - map[originTile].transform.position.z) <= 1)
-                    surroundingTiles.Add(map[TileToCheck]);
-            }
+                TileToCheck = new Vector2Int(originTile.x, originTile.y + 1);
+                if (map.ContainsKey(TileToCheck))
+                {
+                    if (Mathf.Abs(map[TileToCheck].transform.position.z - map[originTile].transform.position.z) <= 1)
+                        surroundingTiles.Add(map[TileToCheck]);
+                }
 
-            TileToCheck = new Vector2Int(originTile.x - 1, originTile.y);
-            if (map.ContainsKey(TileToCheck))
-            {
-                if (Mathf.Abs(map[TileToCheck].transform.position.z - map[originTile].transform.position.z) <= 1)
-                    surroundingTiles.Add(map[TileToCheck]);
-            }
+                TileToCheck = new Vector2Int(originTile.x, originTile.y - 1);
+                if (map.ContainsKey(TileToCheck))
+                {
+                    if (Mathf.Abs(map[TileToCheck].transform.position.z - map[originTile].transform.position.z) <= 1)
+                        surroundingTiles.Add(map[TileToCheck]);
+                }
+                return surroundingTiles;
 
-            TileToCheck = new Vector2Int(originTile.x, originTile.y + 1);
-            if (map.ContainsKey(TileToCheck))
-            {
-                if (Mathf.Abs(map[TileToCheck].transform.position.z - map[originTile].transform.position.z) <= 1)
-                    surroundingTiles.Add(map[TileToCheck]);
-            }
+            case cardType.Skill1 :
+                Vector2Int TileToCheck2 = new Vector2Int(originTile.x + 1, originTile.y + 1);
+                if (map.ContainsKey(TileToCheck2))
+                {
+                    if (Mathf.Abs(map[TileToCheck2].transform.position.z - map[originTile].transform.position.z) <= 1)
+                        surroundingTiles.Add(map[TileToCheck2]);
+                }
 
-            TileToCheck = new Vector2Int(originTile.x, originTile.y - 1);
-            if (map.ContainsKey(TileToCheck))
-            {
-                if (Mathf.Abs(map[TileToCheck].transform.position.z - map[originTile].transform.position.z) <= 1)
-                    surroundingTiles.Add(map[TileToCheck]);
-            }
+                TileToCheck2 = new Vector2Int(originTile.x - 1, originTile.y - 1);
+                if (map.ContainsKey(TileToCheck2))
+                {
+                    if (Mathf.Abs(map[TileToCheck2].transform.position.z - map[originTile].transform.position.z) <= 1)
+                        surroundingTiles.Add(map[TileToCheck2]);
+                }
 
-            return surroundingTiles;
+                TileToCheck2 = new Vector2Int(originTile.x + 1, originTile.y + 1);
+                if (map.ContainsKey(TileToCheck2))
+                {
+                    if (Mathf.Abs(map[TileToCheck2].transform.position.z - map[originTile].transform.position.z) <= 1)
+                        surroundingTiles.Add(map[TileToCheck2]);
+                }
+
+                TileToCheck2 = new Vector2Int(originTile.x - 1, originTile.y - 1);
+                if (map.ContainsKey(TileToCheck2))
+                {
+                    if (Mathf.Abs(map[TileToCheck2].transform.position.z - map[originTile].transform.position.z) <= 1)
+                        surroundingTiles.Add(map[TileToCheck2]);
+                }
+                return surroundingTiles;
+
+            default : return surroundingTiles;
+                
+
         }
-}
+
+            
+        }
+    }
+
     
 

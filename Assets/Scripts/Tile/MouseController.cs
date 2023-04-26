@@ -10,7 +10,7 @@ public class MouseController : MonoBehaviour
     public GameObject chracterPrefab;
 
     public float speed;
-    private bool isMoving = false;
+    public bool isMoving = false;
 
     public MainCardController mainCard;
     public PathFInder pathFinder;
@@ -79,7 +79,7 @@ public class MouseController : MonoBehaviour
         }
 
         if(path.Count == 0){
-            GetInRangeTiles();
+            //GetInRangeTiles();
             isMoving = false;
             mainCard.moveSelect = false;
             mainCard.mainCardScene = false;
@@ -112,7 +112,6 @@ public class MouseController : MonoBehaviour
 
         rangeFInderTiles = rangeFinder.GetTilesInRange(new Vector2Int(MapManager.Instance.character.standingOnTile.gridLocation.x,
         MapManager.Instance.character.standingOnTile.gridLocation.y),1);
-
         foreach(var item in rangeFInderTiles){
             item.SHowTile();
         }

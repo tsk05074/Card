@@ -9,10 +9,12 @@ public class MainCardController : MonoBehaviour
     CardAction cardActions;
     [SerializeField]
     private List<CardDisplay> card = new List<CardDisplay>();
+    private List<cardType> type = new List<cardType>();
     Image image;
-       public CardDisplay cardDiplay;
-       public bool moveSelect = false;
-       public bool mainCardScene = false;
+    public cardType returnType;
+    public CardDisplay cardDiplay;
+    public bool moveSelect = false;
+    public bool mainCardScene = false;
 
     void Awake()
     {
@@ -25,8 +27,8 @@ public class MainCardController : MonoBehaviour
 
     public void CardSort(){
          for(int i=0;i<CardController.savedeck.Count; i++){
-            card[i].scriptableCard = CardController.savedeck[i];
-            card[i].image.sprite = CardController.savedeck[i].cardSprite;
+             card[i].scriptableCard = CardController.savedeck[i];
+             card[i].image.sprite = CardController.savedeck[i].cardSprite;
         }
 
         StartCoroutine(CardPlay());
@@ -40,6 +42,7 @@ public class MainCardController : MonoBehaviour
                 mainCardScene = true;
 
                 cardActions.PerformAction(CardController.savedeck[i]);
+                //CardTypeReturn(i);
                 Debug.Log(i);
             }
                 yield return new WaitForSeconds(2.0f);
@@ -49,6 +52,11 @@ public class MainCardController : MonoBehaviour
 
         //GameManager.Instance.cardScene.SetActive(true);
     }
+
+    // public void CardTypeReturn(int _savedeck){
+    //     returnType = CardController.savedeck[_savedeck].CardType;
+    //     type.Add(returnType);
+    // }
 
 
 }

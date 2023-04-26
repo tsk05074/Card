@@ -27,7 +27,7 @@ public class PathFInder : MonoBehaviour
             while (openList.Count > 0)
             {
                 OverlayTile currentOverlayTile = openList.OrderBy(x => x.F).First();
-                Debug.Log(currentOverlayTile.F + " " + currentOverlayTile.G);
+                //Debug.Log(currentOverlayTile.F + " " + currentOverlayTile.G);
 
                 openList.Remove(currentOverlayTile);
                 closedList.Add(currentOverlayTile);

@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 597b13f50a24b594c876a318cfa49195, type: 3}
-  m_Name: MoveButton
+  m_Script: {fileID: 11500000, guid: 86a647e00da8c5c44b4be02c355c35c5, type: 3}
+  m_Name: GameConfig
   m_EditorClassIdentifier: 
-  cardName: MoveButton
-  cardSprite: {fileID: 21300000, guid: 3efba912f84d9684cbffc2766c9a178c, type: 3}
-  cardNum: 1
-  mana: 0
-  attackDamage: 0
+  MoveRangeColor: {r: 1, g: 1, b: 1, a: 0}
+  AttackRangeColor: {r: 0, g: 1, b: 1, a: 0}
+  BlockedTileColor: {r: 1, g: 0, b: 0, a: 0}

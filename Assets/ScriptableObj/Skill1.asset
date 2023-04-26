@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 597b13f50a24b594c876a318cfa49195, type: 3}
-  m_Name: MoveButton
+  m_Name: Skill1
   m_EditorClassIdentifier: 
-  cardName: MoveButton
-  cardSprite: {fileID: 21300000, guid: 3efba912f84d9684cbffc2766c9a178c, type: 3}
-  cardNum: 1
+  CardType: 1
+  cardName: Skill1
+  cardSprite: {fileID: 21300000, guid: 4dbda7034e9be914f8cac956e8e30289, type: 3}
+  cardNum: 0
   mana: 0
   attackDamage: 0

@@ -9,7 +9,7 @@ public class CardDisplay : MonoBehaviour
     public Image image;
     void Start()
     {
-        text.text = scriptableCard.cardName;
+        //text.text = scriptableCard.cardName;
         image.sprite = scriptableCard.cardSprite;
     }
 }

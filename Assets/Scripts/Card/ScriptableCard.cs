@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Card", menuName = "Card")]
 public class ScriptableCard : ScriptableObject
 {
+    public cardType CardType;
+
     [Header("info")]
     public string cardName;
     public Sprite cardSprite;
@@ -14,4 +16,9 @@ public class ScriptableCard : ScriptableObject
     public int mana;
     public int attackDamage;
 
+}
+
+public enum cardType{
+    Move,
+    Skill1
 }
