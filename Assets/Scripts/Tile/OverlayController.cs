@@ -7,7 +7,7 @@ public class OverlayController : MonoBehaviour
     private static OverlayController _instance;
     public static OverlayController Instance{get {return _instance;}}
     public Dictionary<Color, List<OverlayTile>> coloredTiles;
-    public GameConfig gameConfig;
+    //public GameConfig gameConfig;
 
     public Color AttackRangeColor;
     public Color MoveRangeColor;
@@ -28,8 +28,8 @@ public class OverlayController : MonoBehaviour
             }
 
             coloredTiles = new Dictionary<Color, List<OverlayTile>>();
-            MoveRangeColor = gameConfig.MoveRangeColor;
-            AttackRangeColor = gameConfig.AttackRangeColor;
+            //MoveRangeColor = gameConfig.MoveRangeColor;
+            //AttackRangeColor = gameConfig.AttackRangeColor;
             //BlockedTileColor = gameConfig.BlockedTileColor;
         }
 

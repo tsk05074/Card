@@ -140,14 +140,14 @@ public class MapManager : MonoBehaviour
                         surroundingTiles.Add(map[TileToCheck2]);
                 }
 
-                TileToCheck2 = new Vector2Int(originTile.x + 1, originTile.y + 1);
+                TileToCheck2 = new Vector2Int(originTile.x - 1, originTile.y + 1);
                 if (map.ContainsKey(TileToCheck2))
                 {
                     if (Mathf.Abs(map[TileToCheck2].transform.position.z - map[originTile].transform.position.z) <= 1)
                         surroundingTiles.Add(map[TileToCheck2]);
                 }
 
-                TileToCheck2 = new Vector2Int(originTile.x - 1, originTile.y - 1);
+                TileToCheck2 = new Vector2Int(originTile.x + 1, originTile.y - 1);
                 if (map.ContainsKey(TileToCheck2))
                 {
                     if (Mathf.Abs(map[TileToCheck2].transform.position.z - map[originTile].transform.position.z) <= 1)

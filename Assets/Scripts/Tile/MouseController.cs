@@ -15,6 +15,8 @@ public class MouseController : MonoBehaviour
     public MainCardController mainCard;
     public PathFInder pathFinder;
     public RangeFinder rangeFinder;
+    private BattleController battleController;
+
     public List<OverlayTile> path;
     public List<OverlayTile> rangeFInderTiles;
 
@@ -22,6 +24,7 @@ public class MouseController : MonoBehaviour
         pathFinder = FindObjectOfType<PathFInder>();
         rangeFinder = FindObjectOfType<RangeFinder>();
         mainCard = FindObjectOfType<MainCardController>();
+        battleController = FindObjectOfType<BattleController>();
 
         path = new List<OverlayTile>();
 
@@ -37,7 +40,6 @@ public class MouseController : MonoBehaviour
             cursor.transform.position = tile.transform.position;
 
             if(rangeFInderTiles.Contains(tile) && !isMoving){
-
                 path = pathFinder.FindPath(MapManager.Instance.character.standingOnTile, tile, rangeFInderTiles);
                 for (int i = 0; i < path.Count; i++)
                     {
@@ -45,7 +47,6 @@ public class MouseController : MonoBehaviour
                         var futureTile = i < path.Count - 1 ? path[i + 1] : null;
 
                     }
-
             }
             if(Input.GetMouseButtonDown(0) && mainCard.mainCardScene){
                 tile.SHowTile();
@@ -53,7 +54,7 @@ public class MouseController : MonoBehaviour
                     //
                 }
                 else{
-                    Debug.Log("버튼누름");
+                    Debug.Log(path.Count);
                     isMoving = true;
                     //path = pathFinder.FindPath(MapManager.Instance.character.standingOnTile, tile);
                     tile.gameObject.GetComponent<OverlayTile>().HIdeTile();
@@ -109,6 +110,7 @@ public class MouseController : MonoBehaviour
 //현재 이동 위치 표시
     public void GetInRangeTiles(){
         mainCard.moveSelect = true;
+        //isMoving = true;
 
         rangeFInderTiles = rangeFinder.GetTilesInRange(new Vector2Int(MapManager.Instance.character.standingOnTile.gridLocation.x,
         MapManager.Instance.character.standingOnTile.gridLocation.y),1);

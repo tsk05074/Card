@@ -846,7 +846,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4dbda7034e9be914f8cac956e8e30289, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2b1c55846f20d074fae2eac59dc11428, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2393,6 +2393,7 @@ MonoBehaviour:
   - {fileID: 488947934}
   - {fileID: 1354068096}
   - {fileID: 1202718890}
+  returnType: 0
   cardDiplay: {fileID: 0}
   moveSelect: 0
   mainCardScene: 0
@@ -2917,7 +2918,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 752847fad9acacb4da68e589c26f2ad8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameConfig: {fileID: 0}
   AttackRangeColor: {r: 0, g: 0, b: 0, a: 0}
   MoveRangeColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &967721610
@@ -2978,7 +2978,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2423369721e608a4b884e76df2d530d0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 91a0fe95ea37fcf4a9f40eac8728a667, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -15,12 +15,12 @@ public class BattleController : MonoBehaviour
     public void GetAttackRangeTiles(){
         isAttack = true;
         rangeAttackTiles = rangeFinder.GetTilesInRange(new Vector2Int(MapManager.Instance.character.standingOnTile.gridLocation.x,
-        MapManager.Instance.character.standingOnTile.gridLocation.y),2);
-
-        Debug.Log(rangeAttackTiles);
+        MapManager.Instance.character.standingOnTile.gridLocation.y),1);
 
         foreach(var item in rangeAttackTiles){
             item.SHowTile();
+            //item.HIdeTile();
         }
+        
     }
 }
