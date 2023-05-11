@@ -41,9 +41,10 @@ public class RangeFinder : MonoBehaviour
                 stepCount++;
                 cardTypeCount++;
 
-                if(cardTypeCount==2){
+                if(cardTypeCount==3){
                     cardTypeCount=0;
                 }
+                Debug.Log(cardTypeCount);
             }
 
             return inRangeTiles.Distinct().ToList();

@@ -43,7 +43,6 @@ public class MainCardController : MonoBehaviour
 
                 cardActions.PerformAction(CardController.savedeck[i]);
                 //CardTypeReturn(i);
-                Debug.Log(i);
             }
                 yield return new WaitForSeconds(2.0f);
 

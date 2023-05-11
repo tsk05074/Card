@@ -3948,6 +3948,7 @@ MonoBehaviour:
   mainCard: {fileID: 915135076}
   pathFinder: {fileID: 847762290}
   rangeFinder: {fileID: 847762291}
+  battleController: {fileID: 1444726164}
   path: []
   rangeFInderTiles: []
 --- !u!1 &1354068091

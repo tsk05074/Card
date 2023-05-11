@@ -10,8 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8807827499087894249}
   - component: {fileID: 2919102525577340483}
-  - component: {fileID: 3420934002547477164}
-  - component: {fileID: 1943018252443811982}
   - component: {fileID: 1476501295118903628}
   - component: {fileID: 2962221988156904370}
   m_Layer: 0
@@ -52,35 +50,7 @@ MonoBehaviour:
   Name: Emily
   movementPoints: 10
   hp: 100
-  damage: 20
   attackRange: 1
---- !u!114 &3420934002547477164
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1141789186971783570}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 880561127e18be44da68610f09f0c604, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetGrid: {fileID: 0}
-  positionOnGrid: {x: 2, y: 2}
---- !u!114 &1943018252443811982
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1141789186971783570}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cfdcbbe517358c4096f8b526d2eff12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 1
 --- !u!114 &1476501295118903628
 MonoBehaviour:
   m_ObjectHideFlags: 0

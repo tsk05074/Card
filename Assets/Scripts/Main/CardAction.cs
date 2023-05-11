@@ -9,8 +9,6 @@ public class CardAction : MonoBehaviour
     MouseController mouseController;
     BattleController battleController;
 
-    void Start(){
-    }   
     public void PerformAction(ScriptableCard _cardname){
 
         mouseController = FindObjectOfType<MouseController>();
@@ -19,7 +17,7 @@ public class CardAction : MonoBehaviour
         cardname = _cardname;
         switch(cardname.CardType){
             case  cardType.Move : mouseController.GetInRangeTiles(); break;
-            case cardType.Skill1 : battleController.GetAttackRangeTiles(); break;
+            case cardType.Skill1 : StartCoroutine(battleController.PlayerAttack(cardname)); break;
             default : Debug.Log("thiere an issue"); break;
         }
     }

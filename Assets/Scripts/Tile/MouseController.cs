@@ -11,11 +11,13 @@ public class MouseController : MonoBehaviour
 
     public float speed;
     public bool isMoving = false;
+    private int cardTypeCount = 0;
 
     public MainCardController mainCard;
     public PathFInder pathFinder;
     public RangeFinder rangeFinder;
-    private BattleController battleController;
+    public BattleController battleController;
+    private ScriptableCard scriptableCard;
 
     public List<OverlayTile> path;
     public List<OverlayTile> rangeFInderTiles;
@@ -25,6 +27,7 @@ public class MouseController : MonoBehaviour
         rangeFinder = FindObjectOfType<RangeFinder>();
         mainCard = FindObjectOfType<MainCardController>();
         battleController = FindObjectOfType<BattleController>();
+        scriptableCard = FindObjectOfType<ScriptableCard>();
 
         path = new List<OverlayTile>();
 
@@ -38,8 +41,8 @@ public class MouseController : MonoBehaviour
         if(hit.HasValue){
             OverlayTile tile = hit.Value.collider.gameObject.GetComponent<OverlayTile>();
             cursor.transform.position = tile.transform.position;
-
-            if(rangeFInderTiles.Contains(tile) && !isMoving){
+            //CardController.savedeck[cardTypeCount].CardType == cardType.Move
+            if(rangeFInderTiles.Contains(tile) && !isMoving && battleController.isAttack == false){
                 path = pathFinder.FindPath(MapManager.Instance.character.standingOnTile, tile, rangeFInderTiles);
                 for (int i = 0; i < path.Count; i++)
                     {
@@ -48,23 +51,38 @@ public class MouseController : MonoBehaviour
 
                     }
             }
-            if(Input.GetMouseButtonDown(0) && mainCard.mainCardScene){
+
+            if(Input.GetMouseButtonDown(0) && mainCard.mainCardScene && battleController.isAttack == false){
                 tile.SHowTile();
                 if(MapManager.Instance.character == null){
                     //
                 }
                 else{
-                    Debug.Log(path.Count);
                     isMoving = true;
                     //path = pathFinder.FindPath(MapManager.Instance.character.standingOnTile, tile);
                     tile.gameObject.GetComponent<OverlayTile>().HIdeTile();
                 }
             }
+
+            
         }
 
-        if(path.Count > 0 && isMoving){
+        if(path.Count > 0 && isMoving && battleController.isAttack == false){
+            Debug.Log("무빙");
             MoveAlongPath();
         }
+    }
+
+    IEnumerator Plus(){
+        cardTypeCount++;
+
+        if (cardTypeCount == 3)
+        {
+            cardTypeCount = 0;
+        }
+        Debug.Log(cardTypeCount);
+        
+        yield return null;
     }
 
     private void MoveAlongPath(){
@@ -80,7 +98,6 @@ public class MouseController : MonoBehaviour
         }
 
         if(path.Count == 0){
-            //GetInRangeTiles();
             isMoving = false;
             mainCard.moveSelect = false;
             mainCard.mainCardScene = false;
